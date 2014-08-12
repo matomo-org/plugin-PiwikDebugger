@@ -1,0 +1,13 @@
+{
+ "name": "PiwikDebugger",
+ "version": "0.1.0",
+ "description": "Debug Piwik installs remotely.",
+ "theme": false,
+ "authors": [
+     {
+         "name": "Piwik",
+         "email": "",
+         "homepage": ""
+     }
+ ]
+}
