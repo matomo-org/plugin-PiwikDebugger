@@ -8,11 +8,9 @@
  */
 namespace Piwik\Plugins\PiwikDebugger;
 
+use Piwik\Db;
 use Piwik\View;
 
-/**
- *
- */
 class Controller extends \Piwik\Plugin\ControllerAdmin
 {
 

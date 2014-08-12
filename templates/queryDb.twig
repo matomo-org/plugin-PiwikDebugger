@@ -1,8 +1,7 @@
 {% extends 'admin.twig' %}
 
 {% block content %}
-<strong>Hello world!</strong>
-<br/>
-
-The answer to life is {{ answerToLife }}
+    <div ng-controller="SqlBrowserController">
+        <div ng-include="'plugins/PiwikDebugger/angularjs/sqlbrowser/sqlbrowser.html'"></div>
+    </div>
 {% endblock %}
