@@ -9,4 +9,5 @@ $(document).ready(function () {
 
     // always open the editor in a new window
     $('.Menu-tabList ul li a:contains("Edit Files")').attr('target', '_blank');
+    $('.Menu-tabList ul li a:contains("Server Stats")').attr('target', '_blank');
 });

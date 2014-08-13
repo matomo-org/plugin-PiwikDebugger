@@ -29,6 +29,12 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
         exit;
     }
 
+    public function serverStats()
+    {
+        header('Location: plugins/PiwikDebugger/libs/linux-dash');
+        exit;
+    }
+
     public function phpInfo()
     {
         ob_start();

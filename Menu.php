@@ -19,9 +19,10 @@ class Menu extends \Piwik\Plugin\Menu
             return;
         }
 
-        $menu->addDiagnosticItem('Edit Files', array('module' => 'PiwikDebugger', 'action' => 'editFiles'), $orderId = 80);
-        $menu->addDiagnosticItem('Query Database', array('module' => 'PiwikDebugger', 'action' => 'queryDb'), $orderId = 81);
-        $menu->addDiagnosticItem('PHP Info', array('module' => 'PiwikDebugger', 'action' => 'phpInfo'), $orderId = 82);
-        $menu->addDiagnosticItem('Config', array('module' => 'PiwikDebugger', 'action' => 'config'), $orderId = 82);
+        $menu->addDiagnosticItem('Config', array('module' => 'PiwikDebugger', 'action' => 'config'), $orderId = 80);
+        $menu->addDiagnosticItem('Edit Files', array('module' => 'PiwikDebugger', 'action' => 'editFiles'), $orderId = 81);
+        $menu->addDiagnosticItem('Query Database', array('module' => 'PiwikDebugger', 'action' => 'queryDb'), $orderId = 82);
+        $menu->addDiagnosticItem('PHP Info', array('module' => 'PiwikDebugger', 'action' => 'phpInfo'), $orderId = 83);
+        $menu->addDiagnosticItem('Server Stats', array('module' => 'PiwikDebugger', 'action' => 'serverStats'), $orderId = 84);
     }
 }
