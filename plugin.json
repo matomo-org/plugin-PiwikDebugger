@@ -1,8 +1,15 @@
 {
  "name": "PiwikDebugger",
  "version": "0.1.0",
- "description": "Debug Piwik installs remotely.",
+ "description": "Debug Piwik installs in case you do not have SSH/FTP access.",
  "theme": false,
+ "license": "GPL-3.0+",
+ "homepage": "http://piwik.org",
+ "keywords": [
+   "debugging",
+   "development",
+   "remote"
+ ],
  "authors": [
      {
          "name": "Piwik",

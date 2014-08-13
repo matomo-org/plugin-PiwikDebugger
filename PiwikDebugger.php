@@ -117,10 +117,6 @@ class PiwikDebugger extends \Piwik\Plugin
         if ($pluginName == 'PiwikDebugger') {
             $this->checkPermission();
         }
-
-        if ($pluginName == 'API') {
-            $this->debugBar = null;
-        }
     }
 
     public function checkControllerPermission($module, $action)

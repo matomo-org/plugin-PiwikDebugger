@@ -6,6 +6,7 @@
 This plugin is only meant for developing or for debugging Piwik instances where you do not have any SSH/FTP access.
 
 ### Features
+
 * Edit all Piwik files
 * Browse the Piwik database
 * Execute database queries and see the result
@@ -16,14 +17,21 @@ This plugin is only meant for developing or for debugging Piwik instances where 
 * Package Piwik or any directory as ZIP and download it
 
 ### Used libraries
+
 * https://github.com/mattpass/ICEcoder (Standard Open Source Initiative MIT License)
 * https://github.com/afaqurk/linux-dash (The MIT License (MIT))
 * https://github.com/vrana/adminer/ (Apache License 2.0 or GPL 2)
 * https://github.com/maximebf/php-debugbar (MIT)
 
+### License
+
+PiwikDebugger is released under the GPL v3 (or later) license, see [LICENSE](LICENSE)
+
+
 ## FAQ
 
 __How do I get to the terminal?__
+
 Open "Edit files", move your mouse to the left and a navigation will open where you can select the terminal.
 
 ## Changelog
@@ -32,4 +40,4 @@ Here goes the changelog text.
 
 ## Support
 
-Please direct any feedback to ...
+Please direct any feedback to hello@piwik.org - http://piwik.org
