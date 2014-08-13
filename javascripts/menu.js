@@ -7,7 +7,10 @@
 
 $(document).ready(function () {
 
-    // always open the editor in a new window
-    $('.Menu-tabList ul li a:contains("Edit Files")').attr('target', '_blank');
-    $('.Menu-tabList ul li a:contains("Server Stats")').attr('target', '_blank');
+    var linksToOpenInNewWindow = ['Edit Files', 'Server Stats', 'Browse Database'];
+
+    for (var index = 0; index < linksToOpenInNewWindow.length; index++) {
+        var title = linksToOpenInNewWindow[index];
+        $('.Menu-tabList ul li a:contains("' + title + '")').attr('target', '_blank');
+    }
 });

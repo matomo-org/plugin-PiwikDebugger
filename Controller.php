@@ -25,13 +25,19 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
 
     public function editFiles()
     {
-        header('Location: plugins/PiwikDebugger/libs/icecoder');
+        header('Location: plugins/PiwikDebugger/libs/icecoder/index.php');
+        exit;
+    }
+
+    public function browseDb()
+    {
+        header('Location: plugins/PiwikDebugger/libs/adminer/index.php');
         exit;
     }
 
     public function serverStats()
     {
-        header('Location: plugins/PiwikDebugger/libs/linux-dash');
+        header('Location: plugins/PiwikDebugger/libs/linux-dash/index.html');
         exit;
     }
 

@@ -2,7 +2,7 @@
 
 ## Description
 
-Features
+### Features
 * Edit all Piwik files
 * Browse the Piwik database
 * Execute database queries and see the result
@@ -11,6 +11,11 @@ Features
 * Check PHP info
 * See all configured values and change some of them
 * Package Piwik or any directory as ZIP and download it
+
+### Used libraries
+* https://github.com/mattpass/ICEcoder (Standard Open Source Initiative MIT License)
+* https://github.com/afaqurk/linux-dash (The MIT License (MIT))
+* https://github.com/vrana/adminer/ (Apache License 2.0 or GPL 2)
 
 ## FAQ
 
