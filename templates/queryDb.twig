@@ -1,6 +1,8 @@
 {% extends 'admin.twig' %}
 
 {% block content %}
+    <h2>Query Database</h2>
+
     <div ng-controller="SqlBrowserController">
         <div ng-include="'plugins/PiwikDebugger/angularjs/sqlbrowser/sqlbrowser.html'"></div>
     </div>

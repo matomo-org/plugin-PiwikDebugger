@@ -1,0 +1,55 @@
+<div class="config">
+
+    <h3>Change config</h3>
+    <table class="dataTable entityTable">
+        <tr>
+            <td width="250">Enable Tracker debug</td>
+            <td><input ng-checked="config.localConfig.Tracker.debug" ng-click="enableTrackerDebug(!config.localConfig.Tracker.debug)" type="checkbox"></td>
+        </tr>
+    </table>
+
+    <h3>Info</h3>
+    <table class="dataTable entityTable">
+        <tbody>
+        <tr>
+            <td width="250">Local Path</td>
+            <td>{{ config.localPath }}</td>
+        </tr>
+        <tr>
+            <td>Common Path</td>
+            <td>{{ config.commonPath }}</td>
+        </tr>
+        <tr>
+            <td>Global Path</td>
+            <td>{{ config.globalPath }}</td>
+        </tr>
+        <tr>
+            <td>Hostname</td>
+            <td>{{ config.hostname }}</td>
+        </tr>
+        <tr>
+            <td>Config Hostname (if set)</td>
+            <td>{{ config.configHost }}</td>
+        </tr>
+        <tr>
+            <td>Local config writable</td>
+            <td>{{ config.writable }}</td>
+        </tr>
+        <tr>
+            <td>Local config exists</td>
+            <td>{{ config.existsLocal }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div ng-repeat="(sectionName, section) in config.localConfig">
+        <h3>Local {{ sectionName }}</h3>
+
+        <table class="dataTable entityTable">
+            <tr ng-repeat="(optionName, optionValue) in section">
+                <td width="50%">{{ optionName }}</td>
+                <td>{{ optionValue|json }}</td>
+            </tr>
+        </table>
+    </div>
+</div>

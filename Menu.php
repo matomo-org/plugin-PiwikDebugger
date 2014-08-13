@@ -9,13 +9,19 @@
 namespace Piwik\Plugins\PiwikDebugger;
 
 use Piwik\Menu\MenuAdmin;
+use Piwik\Piwik;
 
 class Menu extends \Piwik\Plugin\Menu
 {
     public function configureAdminMenu(MenuAdmin $menu)
     {
-        $menu->add('Debugger', '', array('module' => 'PiwikDebugger', 'action' => ''), true, $orderId = 30);
-        $menu->add('Debugger', 'Files', array('module' => 'PiwikDebugger', 'action' => 'editFiles'), true, $orderId = 10);
-        $menu->add('Debugger', 'Database', array('module' => 'PiwikDebugger', 'action' => 'queryDb'), true, $orderId = 20);
+        if (!Piwik::hasUserSuperUserAccess()) {
+            return;
+        }
+
+        $menu->addDiagnosticItem('Edit Files', array('module' => 'PiwikDebugger', 'action' => 'editFiles'), $orderId = 80);
+        $menu->addDiagnosticItem('Query Database', array('module' => 'PiwikDebugger', 'action' => 'queryDb'), $orderId = 81);
+        $menu->addDiagnosticItem('PHP Info', array('module' => 'PiwikDebugger', 'action' => 'phpInfo'), $orderId = 82);
+        $menu->addDiagnosticItem('Config', array('module' => 'PiwikDebugger', 'action' => 'config'), $orderId = 82);
     }
 }

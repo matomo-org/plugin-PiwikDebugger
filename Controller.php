@@ -8,7 +8,6 @@
  */
 namespace Piwik\Plugins\PiwikDebugger;
 
-use Piwik\Db;
 use Piwik\View;
 
 class Controller extends \Piwik\Plugin\ControllerAdmin
@@ -16,18 +15,38 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
 
     public function queryDb()
     {
-        $view = new View('@PiwikDebugger/queryDb.twig');
-        $this->setBasicVariablesView($view);
-        $view->answerToLife = '42';
+        return $this->renderMe('queryDb');
+    }
 
-        return $view->render();
+    public function config()
+    {
+        return $this->renderMe('config');
     }
 
     public function editFiles()
     {
-        $view = new View('@PiwikDebugger/editFiles.twig');
+        header('Location: plugins/PiwikDebugger/libs/icecoder');
+        exit;
+    }
+
+    public function phpInfo()
+    {
+        ob_start();
+        phpinfo();
+
+        return $this->renderMe('phpInfo', array(
+            'phpinfo' => ob_get_clean()
+        ));
+    }
+
+    protected function renderMe($template, array $variables = array())
+    {
+        $view = new View('@' . $this->pluginName . '/' . $template);
         $this->setBasicVariablesView($view);
-        $view->answerToLife = '42';
+
+        foreach ($variables as $key => $value) {
+            $view->$key = $value;
+        }
 
         return $view->render();
     }

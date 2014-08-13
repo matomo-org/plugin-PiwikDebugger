@@ -1,0 +1,9 @@
+{% extends 'admin.twig' %}
+
+{% block content %}
+    <h2>PHP Info</h2>
+
+    <div class="phpinfo">
+        {{ phpinfo|raw }}
+    </div>
+{% endblock %}
