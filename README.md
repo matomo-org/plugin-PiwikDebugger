@@ -2,6 +2,9 @@
 
 ## Description
 
+### WARNING DO NOT INSTALL THIS PLUGIN ON ANY SERVER IN PRODUCTION
+This plugin is only meant for developing or for debugging Piwik instances where you do not have any SSH/FTP access.
+
 ### Features
 * Edit all Piwik files
 * Browse the Piwik database
