@@ -36,7 +36,7 @@ Open "Edit files", move your mouse to the left and a navigation will open where 
 
 ## Changelog
 
-Here goes the changelog text.
+0.1.0 Initial release
 
 ## Support
 
