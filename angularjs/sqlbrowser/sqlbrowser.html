@@ -6,6 +6,8 @@
         <option value="{{preQuery}}" ng-repeat="preQuery in predefinedQueries">{{ preQuery }}</option>
     </select>
 
+    <span>Prefix is "{{ tablePrefix }}"</span>
+
     <div class="entityListContainer" ng-if="!isLoading && result.hasResult">
 
         <h4 class="stats">Executed query "{{ result.query }}" in {{ result.duration }}</h4>

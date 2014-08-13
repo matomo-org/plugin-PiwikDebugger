@@ -7,11 +7,18 @@
 
 angular.module('piwikApp').controller('SqlBrowserController', function($scope, piwikApi){
 
-    $scope.resultSet = [];
+    $scope.resultSet = []
+    $scope.predefinedQueries = [];
 
-    $scope.predefinedQueries = [
-        'select * from piwik_option;'
-    ];
+    piwikApi.fetch({
+        method: 'PiwikDebugger.getTablePrefix'
+    }).then(function (response) {
+        var prefix = response.value;
+        $scope.tablePrefix = prefix;
+        $scope.predefinedQueries = [
+            'select * from ' + prefix +  'option;'
+        ];
+    })
 
     $scope.execQuery = function (sqlQuery) {
         $scope.isLoading = true;

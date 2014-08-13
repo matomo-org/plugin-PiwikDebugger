@@ -43,6 +43,11 @@ class API extends \Piwik\Plugin\API
         );
     }
 
+    public function getTablePrefix()
+    {
+        return Config::getInstance()->database['tables_prefix'];
+    }
+
     public function getConfig()
     {
         $config = Config::getInstance();
