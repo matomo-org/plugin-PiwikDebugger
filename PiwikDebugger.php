@@ -39,7 +39,6 @@ class PiwikDebugger extends \Piwik\Plugin
             'AssetManager.getJavaScriptFiles' => 'getJsFiles',
             'API.Request.dispatch'            => 'checkApiPermission',
             'Request.dispatch'                => 'checkControllerPermission',
-            'Platform.initialized'            => 'initDebugBar',
             'Request.dispatch.end'            => 'renderFooter',
             'Log.getAvailableWriters'         => 'addDebugBarWriter',
             'Request.dispatchCoreAndPluginUpdatesScreen' => 'initDebugBar'
@@ -91,7 +90,6 @@ class PiwikDebugger extends \Piwik\Plugin
         $this->addDatabaseCollector();
         $this->addTwigCollector();
         $this->addConfigCollector();
-
     }
 
     public function renderFooter(&$string)
@@ -112,7 +110,6 @@ class PiwikDebugger extends \Piwik\Plugin
         } else {
             $this->debugBar->sendDataInHeaders();
         }
-
     }
 
     public function checkApiPermission(&$parameters, $pluginName, $methodName)
@@ -144,7 +141,7 @@ class PiwikDebugger extends \Piwik\Plugin
     {
         $log = Config::getInstance()->log;
         $log['log_writers'] = array('debugbar');
-        $log['log_level'] = Log::VERBOSE;
+        $log['log_level'] = 'VERBOSE';
         Config::getInstance()->log = $log;
     }
 
