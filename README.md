@@ -16,6 +16,7 @@
 * https://github.com/mattpass/ICEcoder (Standard Open Source Initiative MIT License)
 * https://github.com/afaqurk/linux-dash (The MIT License (MIT))
 * https://github.com/vrana/adminer/ (Apache License 2.0 or GPL 2)
+* https://github.com/maximebf/php-debugbar (MIT)
 
 ## FAQ
 
