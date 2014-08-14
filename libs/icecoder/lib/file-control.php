@@ -299,7 +299,24 @@ if ($_GET['action']=="save") {
 	if (isset($_POST['contents'])) {
 		if (!$demoMode && ((file_exists($file) && is_writable($file)) || isset($_POST['newFileName']) && $_POST['newFileName']!="")) {
 			$filemtime = $serverType=="Linux" ? filemtime($file) : "1000000";
+
+            if ($file) {
+                $pathToBackup   = __DIR__ . '/../backups';
+                $actualFileName = str_replace($_SERVER['DOCUMENT_ROOT'], '', $file);
+                $backupFile     = $pathToBackup . $actualFileName;
+
+                if (file_exists($file) && !file_exists($backupFile) && is_readable($file)) {
+                    $pathInfo = pathinfo($backupFile);
+                    if (!is_dir($pathInfo['dirname'])) {
+                        @mkdir($pathInfo['dirname'], 0755, true);
+                    }
+
+                    @file_put_contents($backupFile, file_get_contents($file));
+                }
+            }
+
 			if (!(isset($_GET['fileMDT']))||$filemtime==$_GET['fileMDT']) {
+
 				$fh = fopen($file, 'w') or die("Sorry, cannot save");
 				// replace \r\n (Windows), \r (old Mac) and \n (Linux) line endings with whatever we chose to be lineEnding
 				$contents = $_POST['contents'];
