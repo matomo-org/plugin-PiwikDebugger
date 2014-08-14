@@ -7,7 +7,7 @@ This plugin is only meant for developing or for debugging Piwik instances where 
 
 ### Features
 
-* Edit all Piwik files
+* Edit all Piwik files and restore all changed files with one click
 * Browse the Piwik database
 * Execute database queries and see the result
 * Monitor server stats
