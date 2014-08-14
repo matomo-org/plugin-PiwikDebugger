@@ -13,8 +13,11 @@ This plugin is only meant for developing or for debugging Piwik instances where 
 * Monitor server stats
 * Execute commands in a terminal
 * Check PHP info
-* See all configured values and change some of them
 * Package Piwik or any directory as ZIP and download it
+* See all configured config values and change some of them
+* See all log messages
+* See all executed SQL queries during a request, how long they took and which parameters were used
+* See how long it took to generate a page on the server and how much memory it needed
 
 ### Used libraries
 
@@ -30,9 +33,25 @@ PiwikDebugger is released under the GPL v3 (or later) license, see [LICENSE](LIC
 
 ## FAQ
 
+__Where can I find those features?__
+
+Most of them are visible in the Admin/Settings area of Piwik under the section "Diagonse". The debug bar should be visible on the bottom of the page. In case it is closed there is an icon on the bottom left to open it. 
+
 __How do I get to the terminal?__
 
 Open "Edit files", move your mouse to the left and a navigation will open where you can select the terminal.
+
+__Where is my ZIP file that I have generated in the file editor?__
+
+If the browser doesn't offer you to download the ZIP it'll be placed in `plugins/PiwikDebugger/libs/icecoder/backups`
+
+__When I edit a file in the file editor, where can I find an untouched copy of the file?__
+
+Before changing a file the first time we will generate a backup within the folder `plugins/PiwikDebugger/libs/icecoder/backups`
+
+__How can I restore all edited files?__
+
+Open the file editor and click on the menu entry "File => Restore all edited files"
 
 ## Changelog
 
