@@ -899,6 +899,11 @@ var ICEcoder = {
 	},
 
 	// Upload file(s) - select & submit
+    restoreFiles: function() {
+        top.get('mediaContainer').innerHTML = '<iframe src="lib/restore-files.php?csrf=' + top.ICEcoder.csrf + '" class="whiteGlow" style="width: 660px; height: 450px"></iframe>';
+        top.ICEcoder.showHide('show',top.get('blackMask'));
+	},
+	// Upload file(s) - select & submit
 	uploadFilesSelect: function(location) {
 		top.get('uploadDir').value = location;
 		top.get("fileInput").click();

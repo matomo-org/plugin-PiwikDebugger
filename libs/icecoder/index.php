@@ -171,6 +171,7 @@ Color picker"><img src="images/color-picker.png" style="cursor: pointer" alt="Co
 				<li><a nohref onclick="ICEcoder.duplicateFiles(top.ICEcoder.selectedFiles)">Duplicate</a></li>
 				<li><a nohref onclick="ICEcoder.renameFile(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])">Rename</a></li>
 				<li><a nohref onclick="ICEcoder.uploadFilesSelect(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])">Upload...</a></li>
+				<li><a nohref onclick="ICEcoder.restoreFiles()">Restore all edited files...</a></li>
 				<li><a nohref onclick="ICEcoder.zipIt(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])">Zip</a></li>
 				<li><a nohref onclick="ICEcoder.propertiesScreen(top.ICEcoder.selectedFiles[top.ICEcoder.selectedFiles.length-1])">Properties...</a></li>
 				<li><a nohref onClick="ICEcoder.printCode()">Print...</a></li>

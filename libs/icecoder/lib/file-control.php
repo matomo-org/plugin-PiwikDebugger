@@ -305,13 +305,17 @@ if ($_GET['action']=="save") {
                 $actualFileName = str_replace($_SERVER['DOCUMENT_ROOT'], '', $file);
                 $backupFile     = $pathToBackup . $actualFileName;
 
-                if (file_exists($file) && !file_exists($backupFile) && is_readable($file)) {
+                if (file_exists($file) && !is_dir($file) && !file_exists($backupFile) && is_readable($file)) {
                     $pathInfo = pathinfo($backupFile);
                     if (!is_dir($pathInfo['dirname'])) {
                         @mkdir($pathInfo['dirname'], 0755, true);
                     }
 
-                    @file_put_contents($backupFile, file_get_contents($file));
+                    $contentToBackup = @file_get_contents($file);
+
+                    if ($contentToBackup) {
+                        @file_put_contents($backupFile, $contentToBackup);
+                    }
                 }
             }
 
