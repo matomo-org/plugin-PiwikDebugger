@@ -11,7 +11,7 @@ This plugin is only meant for developing or for debugging Piwik instances where 
 * Browse the Piwik database
 * Execute database queries and see the result
 * Monitor server stats
-* Execute commands in a terminal
+* Execute any system command in a terminal (if server allows you to execute it)
 * Check PHP info
 * Package Piwik or any directory as ZIP and download it
 * See all configured config values and change some of them
