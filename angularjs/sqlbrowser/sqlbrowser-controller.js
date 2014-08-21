@@ -16,7 +16,11 @@ angular.module('piwikApp').controller('SqlBrowserController', function($scope, p
         var prefix = response.value;
         $scope.tablePrefix = prefix;
         $scope.predefinedQueries = [
-            'select * from ' + prefix +  'option;'
+            'select * from ' + prefix +  'option;',
+            'show full processlist;',
+            'show status;',
+            'show session variables;',
+            'show global variables;'
         ];
     })
 
