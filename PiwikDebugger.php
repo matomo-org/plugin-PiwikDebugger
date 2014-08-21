@@ -69,6 +69,13 @@ class PiwikDebugger extends \Piwik\Plugin
 
     public function getStylesheetFiles(&$stylesheets)
     {
+        $debugBarRenderer = $this->debugBar->getJavascriptRenderer();
+        foreach ($debugBarRenderer->getAssets('css', JavascriptRenderer::RELATIVE_URL) as $path) {
+            if (is_readable($path)) {
+                $stylesheets[] = $path;
+            }
+        }
+
         $stylesheets[] = "plugins/PiwikDebugger/stylesheets/debugger.less";
         $stylesheets[] = "plugins/PiwikDebugger/angularjs/config/config.less";
         $stylesheets[] = "plugins/PiwikDebugger/angularjs/sqlbrowser/sqlbrowser.less";
@@ -76,9 +83,17 @@ class PiwikDebugger extends \Piwik\Plugin
 
     public function getJsFiles(&$jsFiles)
     {
+        $debugBarRenderer = $this->debugBar->getJavascriptRenderer();
+        foreach ($debugBarRenderer->getAssets('js', JavascriptRenderer::RELATIVE_URL) as $path) {
+            if (is_readable($path)) {
+                $jsFiles[] = $path;
+            }
+        }
+
         $jsFiles[] = "plugins/PiwikDebugger/angularjs/sqlbrowser/sqlbrowser-controller.js";
         $jsFiles[] = "plugins/PiwikDebugger/angularjs/config/config-controller.js";
         $jsFiles[] = "plugins/PiwikDebugger/javascripts/menu.js";
+        $jsFiles[] = "plugins/PiwikDebugger/javascripts/debugBarConsoleTab.js";
     }
 
     public function initDebugBar()
@@ -86,6 +101,11 @@ class PiwikDebugger extends \Piwik\Plugin
         $this->enableLoggingToDebugBarAndDisableAllOthers();
 
         $this->debugBar = new StandardDebugBar();
+
+        $debugBarRenderer = $this->debugBar->getJavascriptRenderer();
+        $debugBarRenderer->setEnableJqueryNoConflict(false);
+        $debugBarRenderer->setBaseUrl('plugins/PiwikDebugger/vendor/maximebf/debugbar/src/DebugBar/Resources/');
+        $debugBarRenderer->addControl("piwik_console", array('widget' => 'piwik.DebugBarWidgets.PiwikConsole', 'title' => "Piwik Console"));
 
         $this->addDatabaseCollector();
         $this->addTwigCollector();
@@ -102,11 +122,9 @@ class PiwikDebugger extends \Piwik\Plugin
 
         if (false !== $posEndBody) {
             $debugBarRenderer = $this->debugBar->getJavascriptRenderer();
-            $debugBarRenderer->setBaseUrl('plugins/PiwikDebugger/vendor/maximebf/debugbar/src/DebugBar/Resources/');
-            $debugBar  = $debugBarRenderer->renderHead();
-            $debugBar .= $debugBarRenderer->render();
+            $debugBarJs = $debugBarRenderer->render();
 
-            $string = substr($string, 0, $posEndBody) . $debugBar . substr($string, $posEndBody);
+            $string = substr($string, 0, $posEndBody) . $debugBarJs . substr($string, $posEndBody);
         } else {
             $this->debugBar->sendDataInHeaders();
         }
