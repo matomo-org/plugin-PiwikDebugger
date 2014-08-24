@@ -1,0 +1,24 @@
+<div ng-controller="PiwikConsoleTabController">
+    <div>
+        <div ng-repeat="command in commands" class="piwik-console-command">
+            <div class="command-text">
+                <img ng-src="plugins/Morpheus/images/{{ command.isExpanded ? 'minus' : 'plus' }}.png"
+                     ng-click="command.isExpanded = !command.isExpanded" />
+                <strong>{{ command.commandText }}</strong>
+                <img class="loading" ng-show="command.isLoading" src="plugins/Morpheus/images/loading-blue.gif" />
+                <strong ng-show="!command.isLoading && command.elapsedTime">{{ command.elapsedTime }}ms</strong>
+            </div>
+            <div ng-show="command.isExpanded" class="command-output">
+                <pre ng-show="command.commandOutput.length">{{ command.commandOutput }}</pre>
+                <pre class="error" ng-show="command.commandError !== undefined">Error: {{ command.commandError }}</pre>
+                <div ng-show="!command.isLoading && command.returnCode !== null">
+                    <strong>Return code: <span class="return-code" data-return-code-value="{{ command.returnCode }}">{{ command.returnCode }}</span></strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <input class="command-input" type="text" placeholder="./console help" ng-model="commandToExecute"
+               ng-keypress="$event.which == 13 ? executeCommand(commandToExecute) : true"/>
+    </div>
+</div>

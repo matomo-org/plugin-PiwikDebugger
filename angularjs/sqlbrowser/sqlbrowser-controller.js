@@ -7,7 +7,7 @@
 
 angular.module('piwikApp').controller('SqlBrowserController', function($scope, piwikApi){
 
-    $scope.resultSet = []
+    $scope.resultSet = [];
     $scope.predefinedQueries = [];
 
     piwikApi.fetch({
@@ -23,7 +23,7 @@ angular.module('piwikApp').controller('SqlBrowserController', function($scope, p
             'show session variables;',
             'show global variables;'
         ];
-    })
+    });
 
     $scope.execQuery = function (sqlQuery) {
         $scope.isLoading = true;

@@ -13,6 +13,7 @@ use Piwik\Config;
 use Piwik\DataTable;
 use Piwik\DataTable\Row;
 use Piwik\Db;
+use Piwik\Plugins\PiwikDebugger\Process;
 
 /**
  * API for plugin PiwikDebugger
@@ -21,7 +22,6 @@ use Piwik\Db;
  */
 class API extends \Piwik\Plugin\API
 {
-
     public function execQuery($query)
     {
         $start  = microtime(true);
@@ -70,5 +70,27 @@ class API extends \Piwik\Plugin\API
         $tracker['debug'] = !empty($enable) ? 1 : 0;
         Config::getInstance()->Tracker = $tracker;
         Config::getInstance()->forceSave();
+    }
+
+    public function startCommandExecution($commandText, $commandId)
+    {
+        $process = Process::factory($commandId, $commandText);
+        $process->execute();
+    }
+
+    public function pollCommandStatus($commandId, $outputStart)
+    {
+        $process = Process::factory($commandId);
+
+        $result = array(
+            'output' => $process->getOutput($outputStart),
+            'returnCode' => $process->getReturnCode()
+        );
+
+        if ($result['returnCode'] !== null) {
+            $process->finalizeExecution();
+        }
+
+        return $result;
     }
 }

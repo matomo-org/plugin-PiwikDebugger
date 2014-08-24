@@ -79,6 +79,7 @@ class PiwikDebugger extends \Piwik\Plugin
         $stylesheets[] = "plugins/PiwikDebugger/stylesheets/debugger.less";
         $stylesheets[] = "plugins/PiwikDebugger/angularjs/config/config.less";
         $stylesheets[] = "plugins/PiwikDebugger/angularjs/sqlbrowser/sqlbrowser.less";
+        $stylesheets[] = "plugins/PiwikDebugger/angularjs/piwikconsole/piwikconsole.less";
     }
 
     public function getJsFiles(&$jsFiles)
@@ -92,6 +93,7 @@ class PiwikDebugger extends \Piwik\Plugin
 
         $jsFiles[] = "plugins/PiwikDebugger/angularjs/sqlbrowser/sqlbrowser-controller.js";
         $jsFiles[] = "plugins/PiwikDebugger/angularjs/config/config-controller.js";
+        $jsFiles[] = "plugins/PiwikDebugger/angularjs/piwikconsole/piwikconsole-controller.js";
         $jsFiles[] = "plugins/PiwikDebugger/javascripts/menu.js";
         $jsFiles[] = "plugins/PiwikDebugger/javascripts/debugBarConsoleTab.js";
     }
@@ -105,7 +107,7 @@ class PiwikDebugger extends \Piwik\Plugin
         $debugBarRenderer = $this->debugBar->getJavascriptRenderer();
         $debugBarRenderer->setEnableJqueryNoConflict(false);
         $debugBarRenderer->setBaseUrl('plugins/PiwikDebugger/vendor/maximebf/debugbar/src/DebugBar/Resources/');
-        $debugBarRenderer->addControl("piwik_console", array('widget' => 'piwik.DebugBarWidgets.PiwikConsole', 'title' => "Piwik Console"));
+        $debugBarRenderer->addControl("piwik_console", array('widget' => 'piwik.DebugBarWidgets.PiwikConsole', 'title' => "Web Shell"));
 
         $this->addDatabaseCollector();
         $this->addTwigCollector();
@@ -144,6 +146,12 @@ class PiwikDebugger extends \Piwik\Plugin
         }
 
         $this->checkPermission();
+    }
+
+    public function deactivate()
+    {
+        // remove process output
+        Filesystem::unlinkRecursive(Process::getPathToProcessOutputDir(), $deleteRoot = true);
     }
 
     private function checkPermission()
