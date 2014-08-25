@@ -69,10 +69,12 @@ class PiwikDebugger extends \Piwik\Plugin
 
     public function getStylesheetFiles(&$stylesheets)
     {
-        $debugBarRenderer = $this->debugBar->getJavascriptRenderer();
-        foreach ($debugBarRenderer->getAssets('css', JavascriptRenderer::RELATIVE_URL) as $path) {
-            if (is_readable($path)) {
-                $stylesheets[] = $path;
+        if (!empty($this->debugBar)) {
+            $debugBarRenderer = $this->debugBar->getJavascriptRenderer();
+            foreach ($debugBarRenderer->getAssets('css', JavascriptRenderer::RELATIVE_URL) as $path) {
+                if (is_readable($path)) {
+                    $stylesheets[] = $path;
+                }
             }
         }
 
@@ -84,10 +86,12 @@ class PiwikDebugger extends \Piwik\Plugin
 
     public function getJsFiles(&$jsFiles)
     {
-        $debugBarRenderer = $this->debugBar->getJavascriptRenderer();
-        foreach ($debugBarRenderer->getAssets('js', JavascriptRenderer::RELATIVE_URL) as $path) {
-            if (is_readable($path)) {
-                $jsFiles[] = $path;
+        if (empty($this->debugBar)) {
+            $debugBarRenderer = $this->debugBar->getJavascriptRenderer();
+            foreach ($debugBarRenderer->getAssets('js', JavascriptRenderer::RELATIVE_URL) as $path) {
+                if (is_readable($path)) {
+                    $jsFiles[] = $path;
+                }
             }
         }
 
