@@ -10,6 +10,7 @@ namespace Piwik\Plugins\PiwikDebugger;
 
 use Piwik\Config;
 use Piwik\Db;
+use Piwik\Filesystem;
 use Piwik\Log;
 use Piwik\Piwik;
 use DebugBar\StandardDebugBar;
@@ -19,10 +20,6 @@ include PIWIK_INCLUDE_PATH . '/plugins/PiwikDebugger/vendor/autoload.php';
 
 class PiwikDebugger extends \Piwik\Plugin
 {
-    /**
-     * @var JavascriptRenderer
-     */
-    private $debugBarRenderer;
 
     /**
      * @var StandardDebugBar

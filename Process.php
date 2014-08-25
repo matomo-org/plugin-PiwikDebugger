@@ -192,7 +192,7 @@ class Process
         if (substr($commandExecutable, 0, 1) == '.') {
             $commandExecutable = PIWIK_INCLUDE_PATH . '/' . $commandExecutable;
         }
-        $commandParts[0] $commandExecutable;
+        $commandParts[0] = $commandExecutable;
 
         $command = implode(' ', $commandParts);
 
