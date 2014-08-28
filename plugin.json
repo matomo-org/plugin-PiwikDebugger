@@ -1,7 +1,7 @@
 {
  "name": "PiwikDebugger",
  "version": "0.1.0",
- "description": "This plugin can be harmful, do not install on production. Debug Piwik installs in case you do not have SSH/FTP access.",
+ "description": "This plugin can be harmful, only install it for development and not on production. Debug Piwik installs in case you do not have SSH/FTP access.",
  "theme": false,
  "license": "GPL-3.0+",
  "homepage": "http://piwik.org",
