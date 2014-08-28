@@ -90,12 +90,12 @@ class Process
     {
         list($command, $commandExecutable) = self::normalizeCommandAndExecutablePath($command);
 
-        $isPiwikConsoleCommand = $this->isPiwikConsoleCommand($commandExecutable);
+        $isPiwikConsoleCommand = self::isPiwikConsoleCommand($commandExecutable);
 
         if (function_exists('shell_exec')) {
             // if running console script, make sure to prepend command w/ correct PHP binary
             if ($isPiwikConsoleCommand) {
-                $command = $this->findPhpBinary() . " " . $command;
+                $command = self::findPhpBinary() . " " . $command;
             }
 
             return new ShellExecProcess($executionId, $command);
@@ -199,12 +199,12 @@ class Process
         return array($command, $commandExecutable);
     }
 
-    private function isPiwikConsoleCommand($commandExecutable)
+    private static function isPiwikConsoleCommand($commandExecutable)
     {
         return realpath($commandExecutable) == PIWIK_INCLUDE_PATH . '/console';
     }
 
-    private function findPhpBinary()
+    private static function findPhpBinary()
     {
         $cliPhp = new CliPhp();
 
