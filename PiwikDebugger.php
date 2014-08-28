@@ -83,7 +83,7 @@ class PiwikDebugger extends \Piwik\Plugin
 
     public function getJsFiles(&$jsFiles)
     {
-        if (empty($this->debugBar)) {
+        if (!empty($this->debugBar)) {
             $debugBarRenderer = $this->debugBar->getJavascriptRenderer();
             foreach ($debugBarRenderer->getAssets('js', JavascriptRenderer::RELATIVE_URL) as $path) {
                 if (is_readable($path)) {
