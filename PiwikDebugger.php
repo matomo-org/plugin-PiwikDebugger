@@ -38,7 +38,7 @@ class PiwikDebugger extends \Piwik\Plugin
             'Request.dispatch'                => 'checkControllerPermission',
             'Request.dispatch.end'            => 'renderFooter',
             'Log.getAvailableWriters'         => 'addDebugBarWriter',
-            'Request.dispatchCoreAndPluginUpdatesScreen' => 'initDebugBar'
+            'Request.dispatchCoreAndPluginUpdatesScreen' => 'getDebugBar'
         );
     }
 
@@ -66,12 +66,10 @@ class PiwikDebugger extends \Piwik\Plugin
 
     public function getStylesheetFiles(&$stylesheets)
     {
-        if (!empty($this->debugBar)) {
-            $debugBarRenderer = $this->debugBar->getJavascriptRenderer();
-            foreach ($debugBarRenderer->getAssets('css', JavascriptRenderer::RELATIVE_URL) as $path) {
-                if (is_readable($path)) {
-                    $stylesheets[] = $path;
-                }
+        $debugBarRenderer = $this->getDebugBar()->getJavascriptRenderer();
+        foreach ($debugBarRenderer->getAssets('css', JavascriptRenderer::RELATIVE_URL) as $path) {
+            if (is_readable($path)) {
+                $stylesheets[] = $path;
             }
         }
 
@@ -83,12 +81,10 @@ class PiwikDebugger extends \Piwik\Plugin
 
     public function getJsFiles(&$jsFiles)
     {
-        if (!empty($this->debugBar)) {
-            $debugBarRenderer = $this->debugBar->getJavascriptRenderer();
-            foreach ($debugBarRenderer->getAssets('js', JavascriptRenderer::RELATIVE_URL) as $path) {
-                if (is_readable($path)) {
-                    $jsFiles[] = $path;
-                }
+        $debugBarRenderer = $this->getDebugBar()->getJavascriptRenderer();
+        foreach ($debugBarRenderer->getAssets('js', JavascriptRenderer::RELATIVE_URL) as $path) {
+            if (is_readable($path)) {
+                $jsFiles[] = $path;
             }
         }
 
@@ -99,20 +95,24 @@ class PiwikDebugger extends \Piwik\Plugin
         $jsFiles[] = "plugins/PiwikDebugger/javascripts/debugBarConsoleTab.js";
     }
 
-    public function initDebugBar()
+    public function getDebugBar()
     {
-        $this->enableLoggingToDebugBarAndDisableAllOthers();
+        if (empty($this->debugBar)) {
+            $this->enableLoggingToDebugBarAndDisableAllOthers();
 
-        $this->debugBar = new StandardDebugBar();
+            $this->debugBar = new StandardDebugBar();
 
-        $debugBarRenderer = $this->debugBar->getJavascriptRenderer();
-        $debugBarRenderer->setEnableJqueryNoConflict(false);
-        $debugBarRenderer->setBaseUrl('plugins/PiwikDebugger/vendor/maximebf/debugbar/src/DebugBar/Resources/');
-        $debugBarRenderer->addControl("piwik_console", array('widget' => 'piwik.DebugBarWidgets.PiwikConsole', 'title' => "Web Shell"));
+            $debugBarRenderer = $this->debugBar->getJavascriptRenderer();
+            $debugBarRenderer->setEnableJqueryNoConflict(false);
+            $debugBarRenderer->setBaseUrl('plugins/PiwikDebugger/vendor/maximebf/debugbar/src/DebugBar/Resources/');
+            $debugBarRenderer->addControl("piwik_console", array('widget' => 'piwik.DebugBarWidgets.PiwikConsole', 'title' => "Web Shell"));
 
-        $this->addDatabaseCollector();
-        $this->addTwigCollector();
-        $this->addConfigCollector();
+            $this->addDatabaseCollector();
+            $this->addTwigCollector();
+            $this->addConfigCollector();
+        }
+
+        return $this->debugBar;
     }
 
     public function renderFooter(&$string)
