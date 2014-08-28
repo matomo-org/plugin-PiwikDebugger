@@ -8,28 +8,23 @@ This plugin is only meant for developing or for debugging Piwik instances where 
 ### Features
 
 * Edit all Piwik files and restore all changed files with one click
-* Browse the Piwik database
 * Execute database queries and see the result
+* Browse the Piwik database
 * Monitor server stats
 * Execute any system command in a terminal (if server allows you to execute it)
 * Check PHP info
 * Package Piwik or any directory as ZIP and download it
 * See all configured config values and change some of them
-* See all log messages
-* See all executed SQL queries during a request, how long they took and which parameters were used
-* See how long it took to generate a page on the server and how much memory it needed
+* Execute console commands (in debug bar)
+* Execute any shell command (in debug bar)
+* See all logged messages (in debug bar)
+* See all executed SQL queries during a request, how long they took and which parameters were used  (in debug bar)
+* See how long it took to generate a page on the server and how much memory it needed  (in debug bar)
 
-### Used libraries
-
-* https://github.com/mattpass/ICEcoder (Standard Open Source Initiative MIT License)
-* https://github.com/afaqurk/linux-dash (The MIT License (MIT))
-* https://github.com/vrana/adminer/ (Apache License 2.0 or GPL 2)
-* https://github.com/maximebf/php-debugbar (MIT)
-
-### License
-
-PiwikDebugger is released under the GPL v3 (or later) license, see [LICENSE](LICENSE)
-
+### Setup
+* Enable plugin `PiwikDebugger`
+* You may need to give write permission to folder: `chmod +w path/to/piwik/plugins/PiwikDebugger/libs/icecoder/`
+* If you want to edit files via the file editor, your web server user will need permission to edit files.
 
 ## FAQ
 
@@ -52,6 +47,17 @@ Before changing a file the first time we will generate a backup within the folde
 __How can I restore all edited files?__
 
 Open the file editor and click on the menu entry "File => Restore all edited files"
+
+### Used libraries
+
+* https://github.com/mattpass/ICEcoder (Standard Open Source Initiative MIT License)
+* https://github.com/afaqurk/linux-dash (The MIT License (MIT))
+* https://github.com/vrana/adminer/ (Apache License 2.0 or GPL 2)
+* https://github.com/maximebf/php-debugbar (MIT)
+
+### License
+
+PiwikDebugger is released under the GPL v3 (or later) license, see [LICENSE](LICENSE)
 
 ## Changelog
 
