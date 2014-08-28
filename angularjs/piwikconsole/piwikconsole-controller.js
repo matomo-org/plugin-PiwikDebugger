@@ -32,8 +32,13 @@ angular.module('piwikApp').controller('PiwikConsoleTabController', function ($sc
                 method: 'PiwikDebugger.startCommandExecution',
                 commandText: this.commandText,
                 commandId: this.commandId
-            }).then(function () {
-                self.startPolling();
+            }).then(function (response) {
+                if (!response || response.result == 'success') {
+                    self.startPolling();
+                } else {
+                    self.commandError = response;
+                    self.isLoading = false;
+                }
             }).catch(function (errorMessage) {
                 if (errorMessage) {
                     self.commandError = errorMessage;
@@ -46,7 +51,7 @@ angular.module('piwikApp').controller('PiwikConsoleTabController', function ($sc
         // abort client side request so we won't wait for a long-running process to finish, then...
         $timeout(function () {
             request.abort();
-        }, 2000);
+        }, 4000);
     };
 
     Command.prototype.startPolling = function () {
