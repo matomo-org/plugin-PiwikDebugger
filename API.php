@@ -61,6 +61,7 @@ class API extends \Piwik\Plugin\API
             'writable'    => $config->isFileWritable(),
             'existsLocal' => $config->existsLocalConfig(),
             'localConfig' => _parse_ini_file($config->getLocalPath(), true),
+            'commonConfig' => _parse_ini_file($config->getCommonPath(), true),
         );
     }
 
