@@ -52,4 +52,15 @@
             </tr>
         </table>
     </div>
+
+    <div ng-repeat="(sectionName, section) in config.commonConfig">
+        <h3>Common {{ sectionName }}</h3>
+
+        <table class="dataTable entityTable">
+            <tr ng-repeat="(optionName, optionValue) in section">
+                <td width="50%">{{ optionName }}</td>
+                <td>{{ optionValue|json }}</td>
+            </tr>
+        </table>
+    </div>
 </div>
