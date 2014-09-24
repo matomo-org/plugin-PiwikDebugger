@@ -88,9 +88,9 @@ class PiwikDebugger extends \Piwik\Plugin
             }
         }
 
-        $jsFiles[] = "plugins/PiwikDebugger/angularjs/sqlbrowser/sqlbrowser-controller.js";
-        $jsFiles[] = "plugins/PiwikDebugger/angularjs/config/config-controller.js";
-        $jsFiles[] = "plugins/PiwikDebugger/angularjs/piwikconsole/piwikconsole-controller.js";
+        $jsFiles[] = "plugins/PiwikDebugger/angularjs/sqlbrowser/sqlbrowser.controller.js";
+        $jsFiles[] = "plugins/PiwikDebugger/angularjs/config/config.controller.js";
+        $jsFiles[] = "plugins/PiwikDebugger/angularjs/piwikconsole/piwikconsole.controller.js";
         $jsFiles[] = "plugins/PiwikDebugger/javascripts/menu.js";
         $jsFiles[] = "plugins/PiwikDebugger/javascripts/debugBarConsoleTab.js";
     }
