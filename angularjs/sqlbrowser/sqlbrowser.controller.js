@@ -7,19 +7,30 @@
 (function () {
     angular.module('piwikApp').controller('SqlBrowserController', SqlBrowserController);
 
-    SqlBrowserController.$inject = ['$scope', 'piwikApi'];
+    SqlBrowserController.$inject = ['piwikApi'];
 
-    function SqlBrowserController($scope, piwikApi){
+    function SqlBrowserController(piwikApi){
 
-        $scope.resultSet = [];
-        $scope.predefinedQueries = [];
+        var vm = this;
+        vm.resultSet = [];
+        vm.predefinedQueries = [];
+        vm.execQuery = execQuery;
 
-        piwikApi.fetch({
-            method: 'PiwikDebugger.getTablePrefix'
-        }).then(function (response) {
-            var prefix = response.value;
-            $scope.tablePrefix = prefix;
-            $scope.predefinedQueries = [
+        fetchTablePrefix();
+
+        function fetchTablePrefix()
+        {
+            piwikApi.fetch({
+                method: 'PiwikDebugger.getTablePrefix'
+            }).then(function (response) {
+                vm.tablePrefix = response.value;
+                vm.predefinedQueries = getPredefinedQueries(vm.tablePrefix);
+            });
+        }
+
+        function getPredefinedQueries(prefix)
+        {
+            return [
                 'select * from ' + prefix +  'option;',
                 'select VERSION();',
                 'show full processlist;',
@@ -27,18 +38,18 @@
                 'show session variables;',
                 'show global variables;'
             ];
-        });
+        }
 
-        $scope.execQuery = function (sqlQuery) {
-            $scope.isLoading = true;
+        function execQuery(sqlQuery) {
+            vm.isLoading = true;
 
             return piwikApi.fetch({
                 method: 'PiwikDebugger.execQuery',
                 query: sqlQuery
             }).then(function (response) {
-                $scope.result = response;
+                vm.result = response;
             }).finally(function () {
-                $scope.isLoading = false;
+                vm.isLoading = false;
             });
         };
 

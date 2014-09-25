@@ -11,18 +11,22 @@
 
     function ConfigController($scope, piwikApi){
 
-        $scope.config = {};
+        var vm = this;
+        vm.ini = {};
+        vm.enableTrackerDebug = enableTrackerDebug;
 
-        $scope.enableTrackerDebug = function (enable) {
+        requestConfig();
+
+        function enableTrackerDebug (enable) {
             enable = enable ? 1 : 0;
 
             return piwikApi.fetch({
                 method: 'PiwikDebugger.enableTrackerDebug',
                 enable: enable
             }).then(function (response) {
-                $scope.$eval('config.localConfig.Tracker.debug = ' + enable);
+                $scope.$eval('config.ini.localConfig.Tracker.debug = ' + enable);
             }).catch(function () {
-                $scope.$eval('config.localConfig.Tracker.debug = ' + (enable ? 0 : 1));
+                $scope.$eval('config.ini.localConfig.Tracker.debug = ' + (enable ? 0 : 1));
             });
         };
 
@@ -31,10 +35,9 @@
             return piwikApi.fetch({
                 method: 'PiwikDebugger.getConfig'
             }).then(function (response) {
-                $scope.config = response;
+                vm.ini = response;
             });
         }
 
-        requestConfig();
     }
 })();

@@ -4,7 +4,7 @@
     <table class="dataTable entityTable">
         <tr>
             <td width="250">Enable Tracker debug</td>
-            <td><input ng-checked="config.localConfig.Tracker.debug" ng-click="enableTrackerDebug(!config.localConfig.Tracker.debug)" type="checkbox"></td>
+            <td><input ng-checked="config.ini.localConfig.Tracker.debug" ng-click="config.enableTrackerDebug(!config.ini.localConfig.Tracker.debug)" type="checkbox"></td>
         </tr>
     </table>
 
@@ -13,36 +13,36 @@
         <tbody>
         <tr>
             <td width="250">Local Path</td>
-            <td>{{ config.localPath }}</td>
+            <td>{{ config.ini.localPath }}</td>
         </tr>
         <tr>
             <td>Common Path</td>
-            <td>{{ config.commonPath }}</td>
+            <td>{{ config.ini.commonPath }}</td>
         </tr>
         <tr>
             <td>Global Path</td>
-            <td>{{ config.globalPath }}</td>
+            <td>{{ config.ini.globalPath }}</td>
         </tr>
         <tr>
             <td>Hostname</td>
-            <td>{{ config.hostname }}</td>
+            <td>{{ config.ini.hostname }}</td>
         </tr>
         <tr>
             <td>Config Hostname (if set)</td>
-            <td>{{ config.configHost }}</td>
+            <td>{{ config.ini.configHost }}</td>
         </tr>
         <tr>
             <td>Local config writable</td>
-            <td>{{ config.writable }}</td>
+            <td>{{ config.ini.writable }}</td>
         </tr>
         <tr>
             <td>Local config exists</td>
-            <td>{{ config.existsLocal }}</td>
+            <td>{{ config.ini.existsLocal }}</td>
         </tr>
         </tbody>
     </table>
 
-    <div ng-repeat="(sectionName, section) in config.localConfig">
+    <div ng-repeat="(sectionName, section) in config.ini.localConfig">
         <h3>Local {{ sectionName }}</h3>
 
         <table class="dataTable entityTable">
@@ -53,7 +53,7 @@
         </table>
     </div>
 
-    <div ng-repeat="(sectionName, section) in config.commonConfig">
+    <div ng-repeat="(sectionName, section) in config.ini.commonConfig">
         <h3>Common {{ sectionName }}</h3>
 
         <table class="dataTable entityTable">

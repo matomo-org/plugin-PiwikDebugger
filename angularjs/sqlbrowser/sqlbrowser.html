@@ -1,29 +1,29 @@
 <div class="sqlBrowser">
     <input type="text" class="query" ng-model="view.query"></input>
-    <input type="submit" value="Query" ng-click="execQuery(view.query)">
+    <input type="submit" value="Query" ng-click="sqlBrowser.execQuery(view.query)">
 
     <select ng-model="view.preQuery" ng-change="view.query=view.preQuery;">
-        <option value="{{preQuery}}" ng-repeat="preQuery in predefinedQueries">{{ preQuery }}</option>
+        <option value="{{preQuery}}" ng-repeat="preQuery in sqlBrowser.predefinedQueries">{{ preQuery }}</option>
     </select>
 
-    <span>Prefix is "{{ tablePrefix }}"</span>
+    <span>Prefix is "{{ sqlBrowser.tablePrefix }}"</span>
 
-    <div class="entityListContainer" ng-if="!isLoading && result.hasResult">
+    <div class="entityListContainer" ng-if="!sqlBrowser.isLoading && sqlBrowser.result.hasResult">
 
-        <h4 class="stats">Executed query "{{ result.query }}" in {{ result.duration }}</h4>
+        <h4 class="stats">Executed query "{{ sqlBrowser.result.query }}" in {{ sqlBrowser.result.duration }}</h4>
 
         <input type="text" class="filter" ng-model="view.search" placeholder="Filter result"></input>
 
         <table class="dataTable entityTable">
             <thead>
             <tr>
-                <th ng-repeat="column in result.columns">
+                <th ng-repeat="column in sqlBrowser.result.columns">
                     {{ column }}
                 </th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="row in result.resultSet | filter:view.search">
+            <tr ng-repeat="row in sqlBrowser.result.resultSet | filter:view.search">
                 <td ng-repeat="column in row">
                     {{ column }}
                 </td>
@@ -32,9 +32,9 @@
         </table>
     </div>
 
-    <div class="noResult" ng-if="!isLoading && !result.hasResult">No result</div>
+    <div class="noResult" ng-if="!sqlBrowser.isLoading && !sqlBrowser.result.hasResult">No result</div>
 
-    <div ng-show="isLoading">
+    <div ng-show="sqlBrowser.isLoading">
         <div class="loadingPiwik">
             <img src="plugins/Morpheus/images/loading-blue.gif" alt="{{ 'General_LoadingData'|translate }}" />
             {{ 'General_LoadingData'|translate }}
