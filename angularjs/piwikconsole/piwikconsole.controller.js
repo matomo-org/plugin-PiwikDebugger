@@ -76,9 +76,7 @@
 
                 self.commandOutput += response.output;
 
-                if (response.returnCode !== null
-                    && response.returnCode !== undefined
-                ) {
+                if (response.returnCode !== null && response.returnCode !== undefined) {
                     self.finishExecution(response.returnCode);
                 } else {
                     $timeout(function () {

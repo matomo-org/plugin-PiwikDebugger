@@ -28,7 +28,7 @@
             }).catch(function () {
                 $scope.$eval('config.ini.localConfig.Tracker.debug = ' + (enable ? 0 : 1));
             });
-        };
+        }
 
         function requestConfig()
         {
