@@ -5,6 +5,9 @@
  "theme": false,
  "license": "GPL-3.0+",
  "homepage": "http://piwik.org",
+ "require": {
+     "piwik": ">=2.8.0-b3"
+ },
  "keywords": [
    "debugging",
    "development",
