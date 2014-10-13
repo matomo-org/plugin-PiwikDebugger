@@ -10,7 +10,7 @@ namespace Piwik\Plugins\PiwikDebugger\tests\Unit;
 
 use Piwik\Config;
 use Piwik\Plugin\Manager as PluginManager;
-use Piwik\Tests\ConsoleCommandTestCase;
+use Piwik\Tests\Framework\TestCase\ConsoleCommandTestCase;
 
 /**
  * @group PiwikDebugger
