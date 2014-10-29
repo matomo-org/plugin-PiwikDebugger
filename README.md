@@ -1,5 +1,7 @@
 # Piwik PiwikDebugger Plugin
 
+[![Build Status](https://travis-ci.org/piwik/plugin-PiwikDebugger.svg?branch=master)](https://travis-ci.org/piwik/plugin-PiwikDebugger)
+
 ## Description
 
 ### WARNING DO NOT INSTALL THIS PLUGIN ON ANY SERVER IN PRODUCTION
