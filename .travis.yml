@@ -31,7 +31,7 @@ env:
     - PIWIK_ROOT_DIR=$TRAVIS_BUILD_DIR/piwik
     # this variable controls the version of Piwik your tests will run against. increment it when
     # making your plugin compatible with the new version of Piwik.
-    - PIWIK_TEST_TARGET=2.15.0
+    - PIWIK_TEST_TARGET=2.16.0-b6
     - secure: "Wg+G64euXTej+GAKqpSMWSiIYT699/PpDM9VV6Qul555vArBBF6JBRH2PhRfnB/uJX8DjJi6yUtspXTyL6i5RY5RRdfuIkos7m7uJt8uYSVrt4pP0gyFohxwRpJ6rpyqzhd+0IPUWaM4awWFavgkCqjPNERpo/lwpAwTWmswbxE="
     - secure: "Hd3j5hJHRr5vG1DTjFd9Ks6g35792EyFirBTGK911p1ywkYte09WD98+LOb8uJEX/W4fJ04bgPHZbrblzLLQzZs/4wK9qL7riFaMz7RO5RyWpe3P4B+g7wyzqkyVvKC52YXi79zPcLfnPp5ePbIsqGWz4ntmNfNPSGoOvwbVP/Q="
   matrix:
