@@ -27,24 +27,23 @@ env:
   global:
     - PLUGIN_NAME=PiwikDebugger
     - PIWIK_ROOT_DIR=$TRAVIS_BUILD_DIR/piwik
-    # this variable controls the version of Piwik your tests will run against. increment it when
-    # making your plugin compatible with the new version of Piwik.
-    - PIWIK_TEST_TARGET=2.15.0
     - secure: "Wg+G64euXTej+GAKqpSMWSiIYT699/PpDM9VV6Qul555vArBBF6JBRH2PhRfnB/uJX8DjJi6yUtspXTyL6i5RY5RRdfuIkos7m7uJt8uYSVrt4pP0gyFohxwRpJ6rpyqzhd+0IPUWaM4awWFavgkCqjPNERpo/lwpAwTWmswbxE="
     - secure: "Hd3j5hJHRr5vG1DTjFd9Ks6g35792EyFirBTGK911p1ywkYte09WD98+LOb8uJEX/W4fJ04bgPHZbrblzLLQzZs/4wK9qL7riFaMz7RO5RyWpe3P4B+g7wyzqkyVvKC52YXi79zPcLfnPp5ePbIsqGWz4ntmNfNPSGoOvwbVP/Q="
+    # this variable controls the version of Piwik your tests will run against.
+    # by default it will run against the maximum support version read from plugin.json
+    # (PIWIK_TEST_TARGET=maximum_supported_piwik).
+    # You can also specify a specific Piwik version
+    # (PIWIK_TEST_TARGET=2.16.0-b1).
+    - PIWIK_TEST_TARGET=maximum_supported_piwik
   matrix:
     - TEST_SUITE=PluginTests MYSQL_ADAPTER=PDO_MYSQL TEST_AGAINST_PIWIK_BRANCH=$PIWIK_TEST_TARGET
     - TEST_SUITE=PluginTests MYSQL_ADAPTER=PDO_MYSQL TEST_AGAINST_CORE=minimum_required_piwik
-    - TEST_SUITE=UITests MYSQL_ADAPTER=PDO_MYSQL TEST_AGAINST_PIWIK_BRANCH=$PIWIK_TEST_TARGET
 
 matrix:
   exclude:
     # execute latest stable tests only w/ PHP 5.5
-    - php: 5.3.3
+    - php: 5.3
       env: TEST_SUITE=PluginTests MYSQL_ADAPTER=PDO_MYSQL TEST_AGAINST_CORE=minimum_required_piwik
-    # execute UI tests only w/ PHP 5.6
-    - php: 5.3.3
-      env: TEST_SUITE=UITests MYSQL_ADAPTER=PDO_MYSQL TEST_AGAINST_PIWIK_BRANCH=$PIWIK_TEST_TARGET
 
 sudo: required
 
@@ -70,7 +69,7 @@ install:
   - '[ -d ./tests/travis/.git ] || sh -c "rm -rf ./tests/travis && git clone https://github.com/piwik/travis-scripts.git ./tests/travis"'
   - cd ./tests/travis ; git checkout master ; cd ../..
 
-  - export GENERATE_TRAVIS_YML_COMMAND="php ./tests/travis/generator/main.php generate:travis-yml --plugin=\"PiwikDebugger\" --force-php-tests --force-ui-tests --verbose"
+  - export GENERATE_TRAVIS_YML_COMMAND="php ./tests/travis/generator/main.php generate:travis-yml --plugin=\"PiwikDebugger\" --verbose"
   - '[[ "$TRAVIS_JOB_NUMBER" != *.1 || "$TRAVIS_PULL_REQUEST" != "false" ]] || ./tests/travis/autoupdate_travis_yml.sh'
 
   - ./tests/travis/checkout_test_against_branch.sh
